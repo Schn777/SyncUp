@@ -9,14 +9,14 @@ public class SpotifyController : MonoBehaviour
     public static SpotifyController Instance { get; private set; }
     private SpotifyClient _spotify;
     public string userId="";
+    public Boolean AutoStart = false;
 
     public event EventHandler OnNext;
     public event EventHandler OnPrevious;
 
-    private void Awake()
+    private async void Awake()
     {
-        if (Instance == null)
-            Instance = this;
+        if (Instance == null) if (AutoStart) await Init();          
         else if (Instance != this) Destroy(this.gameObject);
         DontDestroyOnLoad(this);
     }
