@@ -6,6 +6,7 @@ public class PlayerArmsController : MonoBehaviour
     private GunController gunController;
     private JumpController jumpController;
     private Animator animator;
+    private GunShoot gunShoot;
 
     void Start()
     {
@@ -13,6 +14,7 @@ public class PlayerArmsController : MonoBehaviour
         sprintController  = GetComponent<SprintController>();
         jumpController = GetComponent<JumpController>();
         gunController = GetComponent<GunController>();
+        gunShoot = GameObject.FindGameObjectWithTag("GunMeshTag").GetComponent<GunShoot>();
     }
 
     private void Actuate(bool actionState, string trigger)
@@ -28,9 +30,10 @@ public class PlayerArmsController : MonoBehaviour
     void Update()
     {
         Actuate(sprintController.IsWalking, "walk");
-        Actuate(gunController.GunWasFired, "shoot");
+        //Actuate(gunController.GunWasFired, "shoot");
         Actuate(jumpController.HasJumped, "jump");
         Actuate(sprintController.IsSprinting, "jog");
+        Actuate(gunShoot.isShooting, "shoot");
         //Actuate Reloading
         //Actuate EmptyGun
         //Actuate ...

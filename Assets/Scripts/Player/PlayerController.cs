@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
             crouchController.UpdateCrouchState();
             headBobController.UpdateHeadBobState();
             dashController.UpdateDashState();
-            gunController?.UpdateShootingState();
+            //gunController?.UpdateShootingState();
         }
     }
 

@@ -17,6 +17,6 @@ public class FPSText : MonoBehaviour
 
     void Update()
     {
-        textMeshProUGUI.text = "" + (int)fpsManager.FrameRate;
+        //textMeshProUGUI.text = "" + (int)fpsManager.FrameRate;
     }
 }

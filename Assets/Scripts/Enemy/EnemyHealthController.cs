@@ -12,7 +12,7 @@ public class EnemyHealthController : MonoBehaviour
 
     private Animator _enemyAnimator;
 
-    private GlobalStates globalStates = GlobalStates.Instance;
+    //private GlobalStates globalStates = GlobalStates.Instance;
 
     private void Start()
     {
@@ -41,7 +41,7 @@ public class EnemyHealthController : MonoBehaviour
 
     private void Update()
     {
-        if (globalStates.DebugMode && Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M))
             AlterateHealthInstantly(0.25f);
     }
 
