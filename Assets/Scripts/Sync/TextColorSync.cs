@@ -12,6 +12,7 @@ public class TextColorSync : MonoBehaviour
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
+        colorSync = GameObject.Find("ColorSyncDefault").GetComponent<ColorSync>();
     }
 
     void Update()
