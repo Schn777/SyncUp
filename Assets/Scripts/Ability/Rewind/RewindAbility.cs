@@ -37,6 +37,7 @@ public class RewindAbility : Ability
     private Vector2[] iterationDelays;
     private Vector2[] iterationFOVs;
     private Camera mainCamera;
+    private SpotifyController spotifyController;
 
     public event EventHandler OnRewindStart;
     public event EventHandler OnRewindIteration;
@@ -46,6 +47,8 @@ public class RewindAbility : Ability
 
     public void Start()
     {
+        spotifyController = SpotifyController.Instance;
+
         SetRewindDurationInFrames();
         PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>(); //TEMP <===
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -158,10 +161,18 @@ public class RewindAbility : Ability
     /// START REWINDING
     /// USE ALL OBJECTS IMPLEMENTING IREWIND
     /// </summary>
-    private void Update()
+    private async void Update()
     {
         UpdateRewindableObjects();
         if (!IsLive && Input.GetKeyDown(TriggerKey) && !OnCooldown)
+        {
             StartCoroutine(Rewind());
+
+
+            if (spotifyController != null)
+            {
+                await spotifyController.Rewind(8);
+            }
+        }   
     }
 }

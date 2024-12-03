@@ -31,10 +31,13 @@ public class DashController : MonoBehaviour
     public ParticleSystem dashLeftSide;
     private PlayerController firstPersonController;
     private Vector3 playerVelocity;
+    private SpotifyController spotifyController;
 
 
     private void Start()
     {
+        spotifyController = SpotifyController.Instance;
+
         if (TriggerKey == KeyCode.None) TriggerKey = KeyCode.C;
         firstPersonController = GetComponent<PlayerController>();
         OnDashStart += (object sender, EventArgs e) =>
@@ -43,7 +46,7 @@ public class DashController : MonoBehaviour
         };
     }
 
-    public void UpdateDashState()
+    public async void UpdateDashState()
     {
         if (Input.GetKeyDown(TriggerKey) && CanDash && !OnCooldown)
         {
@@ -60,6 +63,12 @@ public class DashController : MonoBehaviour
                     firstPersonController._rigidBody.AddForce(playerVelocity * DashForce, ForceMode.VelocityChange);
                     break;
             }
+
+            if (spotifyController != null)
+            {
+                await spotifyController.FastForward(8);
+            }
+            
         }
     }
 
